@@ -1,6 +1,7 @@
 from .base import *
+from decouple import config
 
-DEBUG = False
+DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = ['ip-address', 'www.your-website.com']
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -21,14 +22,14 @@ AUTH_PASSWORD_VALIDATORS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'your-db-name',
-        'USER': 'your-db-username',
-        'PASSWORD': 'your-db-password',
-        'HOST': 'localhost',
+        'NAME': config('NAME'),
+        'USER': config('USER'),
+        'PASSWORD': config('PASSWORD'),
+        'HOST': config('HOST'),
         'PORT': ''
     }
 }
 
 
-STRIPE_PUBLIC_KEY = ''
-STRIPE_SECRET_KEY = ''
+STRIPE_PUBLIC_KEY = config('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY = config('STRIPE_SECRET_KEY')
